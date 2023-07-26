@@ -25,7 +25,7 @@ button {
 }
 
 button:hover {
-    background-color: lightyellow;
+    filter: brightness(95%);
 }
 
 .coordinates {
@@ -51,4 +51,13 @@ button:hover {
 
 .black {
     background-color: lightgrey;
+}
+
+.green{
+    background-color: lightgreen;
+}
+
+.green-border{
+    outline: 6px solid lightgreen;
+    outline-offset: -8px;
 }
