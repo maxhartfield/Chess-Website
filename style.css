@@ -18,6 +18,7 @@ button {
     height: 100px;
     margin: -3px;
     text-align: center;
+    vertical-align: top;
 }
 
 button:hover {
