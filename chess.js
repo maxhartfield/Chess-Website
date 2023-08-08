@@ -55,7 +55,7 @@ function movePiece(event){
             }
         } else if(possibleMoves.get(from).has(coordinates)) {
             event.target.textContent = document.getElementById(from).textContent
-            document.getElementById(from).innerHTML = '.'
+            document.getElementById(from).innerHTML = '&#160'
             castle(coordinates)
             updateKing(getPiece(from).charAt(1), getIndices(coordinates))
             updateLastMove(coordinates)
@@ -151,7 +151,7 @@ function checkEnPassant(coordinates) {
     }
     if(enPassant) {
         setPiece(getCoordinates(getIndices(from)[0], getIndices(coordinates)[1]), '')
-        document.getElementById(getCoordinates(getIndices(from)[0], getIndices(coordinates)[1])).innerHTML = '.'
+        document.getElementById(getCoordinates(getIndices(from)[0], getIndices(coordinates)[1])).innerHTML = '&#160'
     }
 }
 
@@ -222,22 +222,22 @@ function castle(coordinates) {
             setPiece('a8', '')
             setPiece('d8', 'br')
             document.getElementById('d8').textContent = document.getElementById('a8').textContent
-            document.getElementById('a8').innerHTML = '.'
+            document.getElementById('a8').innerHTML = '&#160'
         } else if(from == 'e8' && coordinates == 'g8') {
             setPiece('h8', '')
             setPiece('f8', 'br')
             document.getElementById('f8').textContent = document.getElementById('h8').textContent
-            document.getElementById('h8').innerHTML = '.'
+            document.getElementById('h8').innerHTML = '&#160'
         } else if(from == 'e1' && coordinates == 'c1') {
             setPiece('a1', '')
             setPiece('d1', 'wr')
             document.getElementById('d1').textContent = document.getElementById('a1').textContent
-            document.getElementById('a1').innerHTML = '.'
+            document.getElementById('a1').innerHTML = '&#160'
         } else if(from == 'e1' && coordinates == 'g1') {
             setPiece('h1', '')
             setPiece('f1', 'wr')
             document.getElementById('f1').textContent = document.getElementById('h1').textContent
-            document.getElementById('h1').innerHTML = '.'
+            document.getElementById('h1').innerHTML = '&#160'
         }
     }
 }
