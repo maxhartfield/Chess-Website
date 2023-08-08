@@ -61,3 +61,24 @@ button:hover {
     outline: 6px solid lightgreen;
     outline-offset: -8px;
 }
+
+.yellow {
+    background-color: lightyellow;
+}
+
+.promotion {
+    position: relative;
+    right: 20px;
+    top: 185px;
+}
+
+.show {
+    visibility: hidden;
+}
+
+#text {
+    position: relative;
+    text-align: center;
+    top: 40px;
+    font-size: 30px;
+}
