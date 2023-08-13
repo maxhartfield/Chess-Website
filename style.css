@@ -11,7 +11,7 @@ section {
     margin-top: 50px;
 }
 
-button {
+.board-button {
     display: inline-block;
     font-size: 5em;
     width: 100px;
@@ -78,4 +78,14 @@ button:hover {
     text-align: center;
     top: 20px;
     font-size: 30px;
+}
+
+#undo {
+    width: 100px;
+    height: 50px;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    font-size: 20px;
+    border-radius: 10%;
 }

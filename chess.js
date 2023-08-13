@@ -24,6 +24,22 @@ whiteCastleStatus = [true, true] //queen, king
 blackCastleStatus = [true, true]
 var gameFinished = false
 var boardFreq = new Map()
+var moves = []
+var charMap = new Map()
+charMap.set('wk', '&#9812')
+charMap.set('wq', '&#9813')
+charMap.set('wr', '&#9814')
+charMap.set('wb', '&#9815')
+charMap.set('wn', '&#9816')
+charMap.set('wp', '&#9817')
+charMap.set('bk', '&#9818')
+charMap.set('bq', '&#9819')
+charMap.set('br', '&#9820')
+charMap.set('bb', '&#9821')
+charMap.set('bn', '&#9822')
+charMap.set('bp', '&#9823')
+charMap.set('', '')
+
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
@@ -41,6 +57,7 @@ function ready() {
     for(var i = 0; i < promotionButtons.length; i++) {
         promotionButtons[i].addEventListener('click', hide)
     }
+    document.getElementById('undo').addEventListener('click', undo)
     newTurn()
 }
 
@@ -54,6 +71,7 @@ function movePiece(event){
                 addGreen()
             }
         } else if(possibleMoves.get(from).has(coordinates)) {
+            addPosition()
             event.target.textContent = document.getElementById(from).textContent
             document.getElementById(from).innerHTML = ''
             castle(coordinates)
@@ -76,11 +94,67 @@ function movePiece(event){
     }
 }
 
+function addPosition() {
+    var arr = [
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','','']
+    ]
+    for(var i = 0; i < 8; i++) {
+        for(var j = 0; j < 8; j++) {
+            arr[i][j] = chessGrid[i][j]
+        }
+    }
+    moves.push([arr, whiteCastleStatus[0], whiteCastleStatus[1], blackCastleStatus[0], blackCastleStatus[1], whiteKing[0], whiteKing[1], blackKing[0], blackKing[1], lastMove[0], lastMove[1]])
+}
+
 function hide(event) {
     document.getElementById('promotionSection').classList.toggle('show')
     setPiece(lastMove[1], getPiece(lastMove[1]).charAt(0) + event.target.name)
     console.log(event.target.innerHTML)
     document.getElementById(lastMove[1]).textContent = event.target.textContent
+}
+
+function undo(event) {
+    if(moves.length != 0) {
+        document.getElementById(lastMove[0]).classList.remove('yellow')
+        document.getElementById(lastMove[1]).classList.remove('yellow')
+        boardFreq.set(chessGrid.toString(), boardFreq.get(chessGrid.toString()) - 1)   
+        var move = moves.pop()
+        var arr = move[0]
+        whiteCastleStatus[0] = move[1]
+        whiteCastleStatus[1] = move[2]
+        blackCastleStatus[0] = move[3]
+        blackCastleStatus[1] = move[4]
+        whiteKing[0] = move[5]
+        whiteKing[1] = move[6]
+        blackKing[0] = move[7]
+        blackKing[1] = move[8]
+        lastMove[0] = move[9]
+        lastMove[1] = move[10]
+        for(var i = 0; i < 8; i++) {
+            for(var j = 0; j < 8; j++) {
+                chessGrid[i][j] = arr[i][j]
+            }
+        }
+        for(var i = 0; i < 8; i++) {
+            for(var j = 0; j < 8; j++) {
+                document.getElementById(getCoordinates(i, j)).innerHTML = charMap.get(chessGrid[i][j])
+            }
+        }
+        boardFreq.set(chessGrid.toString(), boardFreq.get(chessGrid.toString()) - 1)   
+        newTurn()
+        if(gameFinished == true) {
+            document.getElementById('text').classList.toggle('show')
+            gameFinished = false
+        }
+        removeGreen()
+    }
 }
 
 function addGreen() {
@@ -340,10 +414,10 @@ function checkThreeFold() {
 function checkPromotion(coordinates) {
     var pieces = []
     if(getPiece(coordinates) == 'wp' && coordinates.charAt(1) == 8) {
-        pieces = ['&#9813', '&#9816', '&#9814', '&#9815']
+        pieces = [charMap.get('wq'), charMap.get('wn'), charMap.get('wr'), charMap.get('wb')]
         
     } else if(getPiece(coordinates) == 'bp' && coordinates.charAt(1) == 1) {
-        pieces = ['&#9819', '&#9822', '&#9820', '&#9821']
+        pieces = [charMap.get('bq'), charMap.get('bn'), charMap.get('br'), charMap.get('bb')]
     }
     if(pieces.length != 0) {
         promotionButtons = document.getElementsByClassName('promotion')
@@ -474,7 +548,7 @@ function getPossibleMoves(i, j, piece) {
     }
     if(piece == 'p') {
         if(turn == 'b') {
-            if(inBounds(i + 1, j - 1) && ((chessGrid[i + 1][j - 1] !== '' && chessGrid[i + 1][j - 1].charAt(0) == oppColor) || (lastMove[1] == getCoordinates(i, j - 1) && chessGrid[i][j - 1] == 'wp'))) {
+            if(inBounds(i + 1, j - 1) && ((chessGrid[i + 1][j - 1] !== '' && chessGrid[i + 1][j - 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 2 && lastMove[1] == getCoordinates(i, j - 1) && chessGrid[i][j - 1] == 'wp'))) {
                 var temp = chessGrid[i + 1][j - 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
@@ -485,7 +559,7 @@ function getPossibleMoves(i, j, piece) {
                 chessGrid[i + 1][j - 1] = temp
                 chessGrid[i][j] = temp2
             }
-            if(inBounds(i + 1, j + 1) && ((chessGrid[i + 1][j + 1] !== '' && chessGrid[i + 1][j + 1].charAt(0) == oppColor) || (lastMove[1] == getCoordinates(i, j + 1) && chessGrid[i][j + 1] == 'wp'))) {
+            if(inBounds(i + 1, j + 1) && ((chessGrid[i + 1][j + 1] !== '' && chessGrid[i + 1][j + 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 2 && lastMove[1] == getCoordinates(i, j + 1) && chessGrid[i][j + 1] == 'wp'))) {
                 var temp = chessGrid[i + 1][j + 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
@@ -519,7 +593,7 @@ function getPossibleMoves(i, j, piece) {
                 }
             }
         } else {
-            if(inBounds(i - 1, j - 1) && ((chessGrid[i - 1][j - 1] !== '' && chessGrid[i - 1][j - 1].charAt(0) == oppColor) || (lastMove[1] == getCoordinates(i, j - 1) && chessGrid[i][j - 1] == 'bp'))) {
+            if(inBounds(i - 1, j - 1) && ((chessGrid[i - 1][j - 1] !== '' && chessGrid[i - 1][j - 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 7 && lastMove[1] == getCoordinates(i, j - 1) && chessGrid[i][j - 1] == 'bp'))) {
                 var temp = chessGrid[i - 1][j - 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
@@ -530,7 +604,7 @@ function getPossibleMoves(i, j, piece) {
                 chessGrid[i - 1][j - 1] = temp
                 chessGrid[i][j] = temp2
             }
-            if(inBounds(i - 1, j + 1) &&((chessGrid[i - 1][j + 1] !== '' && chessGrid[i - 1][j + 1].charAt(0) == oppColor) || (lastMove[1] == getCoordinates(i, j + 1) && chessGrid[i][j + 1] == 'bp'))) {
+            if(inBounds(i - 1, j + 1) &&((chessGrid[i - 1][j + 1] !== '' && chessGrid[i - 1][j + 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 7 && lastMove[1] == getCoordinates(i, j + 1) && chessGrid[i][j + 1] == 'bp'))) {
                 var temp = chessGrid[i - 1][j + 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
