@@ -159,7 +159,7 @@ function checkCastle(i, j, coordinates) {
     chessGrid[i][j] = ''
     if(turn == 'b') {
         if(blackCastleStatus[0]) {
-            if(getPiece('d8') == '' && getPiece('c8') == '') {
+            if(getPiece('d8') == '' && getPiece('c8') == '' && getPiece('b8') == '') {
                 var valid = true
                 for(var x = 1; x <= 2; x++) {
                     chessGrid[i][j - x] = 'bk'
@@ -187,7 +187,7 @@ function checkCastle(i, j, coordinates) {
         chessGrid[i][j] = 'bk'
     } else {
         if(whiteCastleStatus[0]) {
-            if(getPiece('d1') == '' && getPiece('c1') == '') {
+            if(getPiece('d1') == '' && getPiece('c1') == '' && getPiece('b1') == '') {
                 var valid = true
                 for(var x = 1; x <= 2; x++) {
                     chessGrid[i][j - x] = 'wk'
