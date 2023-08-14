@@ -80,9 +80,10 @@ function movePiece(event){
             updateCastleStatus()
             checkEnPassant(coordinates)
             setPiece(coordinates, getPiece(from))
-            setPiece(from, '')        
-            checkPromotion(coordinates)
-            newTurn()
+            setPiece(from, '')   
+            if(!checkPromotion(coordinates)){
+                newTurn()
+            }
         } else {
             if (from !== coordinates) {
                 from = ''
@@ -116,12 +117,13 @@ function addPosition() {
 function hide(event) {
     document.getElementById('promotionSection').classList.toggle('show')
     setPiece(lastMove[1], getPiece(lastMove[1]).charAt(0) + event.target.name)
-    console.log(event.target.innerHTML)
     document.getElementById(lastMove[1]).textContent = event.target.textContent
+    turn = turn == 'w' ? 'b' : 'w'
+    newTurn()
 }
 
 function undo(event) {
-    if(moves.length != 0) {
+    if(moves.length !== 0) {
         document.getElementById(lastMove[0]).classList.remove('yellow')
         document.getElementById(lastMove[1]).classList.remove('yellow')
         boardFreq.set(chessGrid.toString(), boardFreq.get(chessGrid.toString()) - 1)   
@@ -149,10 +151,11 @@ function undo(event) {
         }
         boardFreq.set(chessGrid.toString(), boardFreq.get(chessGrid.toString()) - 1)   
         newTurn()
-        if(gameFinished == true) {
+        if(gameFinished) {
             document.getElementById('text').classList.toggle('show')
             gameFinished = false
         }
+        document.getElementById('promotionSection').classList.toggle('show', true)
         removeGreen()
     }
 }
@@ -343,7 +346,7 @@ function newTurn() {
 function checkCheckmate() {
     var noMoves = true
     for(var coordinates of possibleMoves.keys()) {
-        if(possibleMoves.get(coordinates).size != 0) {
+        if(possibleMoves.get(coordinates).size !== 0) {
             noMoves = false
         }
     }
@@ -362,7 +365,7 @@ function checkInsufficientMaterial() {
     blackPieces = []
     for(var i = 0; i < 8; i++) {
         for(var j = 0; j < 8; j++) {
-            if(chessGrid[i][j] != '') {
+            if(chessGrid[i][j] !== '') {
                 if(chessGrid[i][j].charAt(0) == 'w') {
                     if(chessGrid[i][j].charAt(1) == 'b') {
                         if((i + j) % 2 == 0) {
@@ -398,7 +401,7 @@ function checkInsufficientMaterial() {
     (whitePieces.toString() == 'wk' && blackPieces.toString() == 'bbw,bk') || 
     (whitePieces.toString() == 'wk' && blackPieces.toString() == 'bbb,bk')) {
         endGame("Insufficient Material! White and Black draw!")
-    } else if((whitePieces.toString() == 'wn,wk' && blackPieces.toString() == 'bk') || (whitePieces.toString() == 'wk' && blackPieces.toString() == 'bn,bk')) {
+    } else if((whitePieces.toString() == 'wk,wn' && blackPieces.toString() == 'bk') || (whitePieces.toString() == 'wk' && blackPieces.toString() == 'bk,bn')) {
         endGame("Insufficient Material! White and Black draw!")
     } else if((whitePieces.toString() == 'wbw,wk' && blackPieces.toString() == 'bbw, bk') || (whitePieces.toString() == 'wbb,wk' && blackPieces.toString() == 'bbb,bk')) {
         endGame("Insufficient Material! White and Black draw!")
@@ -419,14 +422,16 @@ function checkPromotion(coordinates) {
     } else if(getPiece(coordinates) == 'bp' && coordinates.charAt(1) == 1) {
         pieces = [charMap.get('bq'), charMap.get('bn'), charMap.get('br'), charMap.get('bb')]
     }
-    if(pieces.length != 0) {
+    if(pieces.length !== 0) {
         promotionButtons = document.getElementsByClassName('promotion')
         for (var i = 0; i < promotionButtons.length; i++) {
             promotionButtons[i].innerHTML = pieces[i]
         }
         document.getElementById('promotionSection').classList.toggle('show')
+        possibleMoves.clear()
+        turn = turn == 'w' ? 'b' : 'w'
     }
-    
+    return pieces.length !== 0
 }
 
 function getIndices(coordinates) {
@@ -548,7 +553,7 @@ function getPossibleMoves(i, j, piece) {
     }
     if(piece == 'p') {
         if(turn == 'b') {
-            if(inBounds(i + 1, j - 1) && ((chessGrid[i + 1][j - 1] !== '' && chessGrid[i + 1][j - 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 2 && lastMove[1] == getCoordinates(i, j - 1) && chessGrid[i][j - 1] == 'wp'))) {
+            if(inBounds(i + 1, j - 1) && ((chessGrid[i + 1][j - 1] !== '' && chessGrid[i + 1][j - 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 2 && lastMove[1] == getCoordinates(4, j - 1) && chessGrid[i][j - 1] == 'wp'))) {
                 var temp = chessGrid[i + 1][j - 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
@@ -559,7 +564,7 @@ function getPossibleMoves(i, j, piece) {
                 chessGrid[i + 1][j - 1] = temp
                 chessGrid[i][j] = temp2
             }
-            if(inBounds(i + 1, j + 1) && ((chessGrid[i + 1][j + 1] !== '' && chessGrid[i + 1][j + 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 2 && lastMove[1] == getCoordinates(i, j + 1) && chessGrid[i][j + 1] == 'wp'))) {
+            if(inBounds(i + 1, j + 1) && ((chessGrid[i + 1][j + 1] !== '' && chessGrid[i + 1][j + 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 2 && lastMove[1] == getCoordinates(4, j + 1) && chessGrid[i][j + 1] == 'wp'))) {
                 var temp = chessGrid[i + 1][j + 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
@@ -593,7 +598,7 @@ function getPossibleMoves(i, j, piece) {
                 }
             }
         } else {
-            if(inBounds(i - 1, j - 1) && ((chessGrid[i - 1][j - 1] !== '' && chessGrid[i - 1][j - 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 7 && lastMove[1] == getCoordinates(i, j - 1) && chessGrid[i][j - 1] == 'bp'))) {
+            if(inBounds(i - 1, j - 1) && ((chessGrid[i - 1][j - 1] !== '' && chessGrid[i - 1][j - 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 7 && lastMove[1] == getCoordinates(3, j - 1) && chessGrid[i][j - 1] == 'bp'))) {
                 var temp = chessGrid[i - 1][j - 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
@@ -604,7 +609,7 @@ function getPossibleMoves(i, j, piece) {
                 chessGrid[i - 1][j - 1] = temp
                 chessGrid[i][j] = temp2
             }
-            if(inBounds(i - 1, j + 1) &&((chessGrid[i - 1][j + 1] !== '' && chessGrid[i - 1][j + 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 7 && lastMove[1] == getCoordinates(i, j + 1) && chessGrid[i][j + 1] == 'bp'))) {
+            if(inBounds(i - 1, j + 1) &&((chessGrid[i - 1][j + 1] !== '' && chessGrid[i - 1][j + 1].charAt(0) == oppColor) || (lastMove[0].charAt(1) == 7 && lastMove[1] == getCoordinates(3, j + 1) && chessGrid[i][j + 1] == 'bp'))) {
                 var temp = chessGrid[i - 1][j + 1]
                 var temp2 = chessGrid[i][j]
                 chessGrid[i][j] = ''
