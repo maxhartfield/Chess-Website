@@ -7,6 +7,34 @@
     </head>
     <body>
         <main>
+            <button id = 'board-editor' class = 'non-board-button'>Board Editor</button>
+            <section id = 'edit-buttons' class = 'show'>
+                <div>
+                    <button id = 'wk' class = 'board-button editor'>&#9812</button>
+                    <button id = 'bk' class = 'board-button editor'>&#9818</button>
+                </div>
+                <div>
+                    <button id = 'wq' class = 'board-button editor'>&#9813</button>
+                    <button id = 'bq' class = 'board-button editor'>&#9819</button>
+                </div>
+                <div>
+                    <button id = 'wr' class = 'board-button editor'>&#9814</button>
+                    <button id = 'br' class = 'board-button editor'>&#9820</button>
+                </div>
+                <div>
+                    <button id = 'wb' class = 'board-button editor'>&#9815</button>
+                    <button id = 'bb' class = 'board-button editor'>&#9821</button>
+                </div>
+                <div>
+                    <button id = 'wn' class = 'board-button editor'>&#9816</button>
+                    <button id = 'bn' class = 'board-button editor'>&#9822</button>
+                </div>
+                <div>
+                    <button id = 'wp' class = 'board-button editor'>&#9817</button>
+                    <button id = 'bp' class = 'board-button editor'>&#9823</button>
+                </div>
+                <div><button id = 'remove' class = 'non-board-button'>Remove</button></div>
+            </section>
             <section id = 'promotionSection' class = 'show'>
                 <div><button name = 'q' class = 'promotion board-button'></button></div>
                 <div><button name = 'n' class = 'promotion board-button'></button></div>
@@ -114,7 +142,32 @@
                 </div>
                 <div id = 'text' class = 'show'>Three Fold Repetition! White and Black draw!<div>
             </section>
-            <button id = 'undo'>Undo</button>
+            <button id = 'undo' class = 'non-board-button'>Undo</button>
+            <div id = 'info' class = 'show'>
+                <select id = "turn">
+                    <option value = "b">White to play</option>
+                    <option value = "w">Black to play</option>
+                </select>
+                <div>
+                    <div>Castle Status:</div>
+                    <div>
+                        <label>White O-O-O</label>
+                        <input type = "checkbox" id = 'W O-O-O'>
+                    </div>
+                    <div>
+                        <label>White O-O</label>
+                        <input type = "checkbox" id = 'W O-O'>
+                    </div>
+                    <div>
+                        <label>Black O-O-O</label>
+                        <input type = "checkbox" id = 'B O-O-O'>
+                    </div>
+                    <div>
+                        <label>Black O-O</label>
+                        <input type = "checkbox" id = 'B O-O'>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>

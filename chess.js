@@ -17,7 +17,6 @@ const N_MOVES = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [
 const K_MOVES = [[1, 1], [1, 0], [1, -1], [0, 1], [0, -1], [-1, 1], [-1, 0], [-1, -1]]
 var whiteKing = [7, 4]
 var blackKing = [0, 4]
-var green = []
 var greenBorder = []
 var lastMove = ['', ''] //from, to
 whiteCastleStatus = [true, true] //queen, king
@@ -38,6 +37,18 @@ charMap.set('br', '&#9820')
 charMap.set('bb', '&#9821')
 charMap.set('bn', '&#9822')
 charMap.set('bp', '&#9823')
+charMap.set('♔', 'wk')
+charMap.set('♕', 'wq')
+charMap.set('♖', 'wr')
+charMap.set('♗', 'wb')
+charMap.set('♘', 'wn')
+charMap.set('♙', 'wp')
+charMap.set('♚', 'bk')
+charMap.set('♛', 'bq')
+charMap.set('♜', 'br')
+charMap.set('♝', 'bb')
+charMap.set('♞', 'bn')
+charMap.set('♟', 'bp')
 charMap.set('', '')
 
 if (document.readyState == 'loading') {
@@ -46,19 +57,111 @@ if (document.readyState == 'loading') {
     ready()
 }
 function ready() {
+    from = ''
     var white = document.getElementsByClassName('white')
     var black = document.getElementsByClassName('black')
     for(var i = 0; i < white.length; i++) {
         white[i].addEventListener('click', movePiece)
         black[i].addEventListener('click', movePiece)
     }
-
-    promotionButtons = document.getElementsByClassName('promotion')
+    var promotionButtons = document.getElementsByClassName('promotion')
     for(var i = 0; i < promotionButtons.length; i++) {
         promotionButtons[i].addEventListener('click', hide)
     }
     document.getElementById('undo').addEventListener('click', undo)
+    document.getElementById('board-editor').addEventListener('click', boardEditor)
+    var editButtons = document.getElementsByClassName('editor')
+    for(var i = 0; i < editButtons.length; i++) {
+        editButtons[i].addEventListener('click', pieceEdit)
+    }
+    document.getElementById('remove').addEventListener('click', pieceEdit)
     newTurn()
+}
+
+function notReady() {
+    chessGrid = [
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','',''],
+        ['','','','','','','','']
+    ]
+    for(var i = 0; i < 8; i++) {
+        for(var j = 0; j < 8; j++) {
+            document.getElementById(getCoordinates(i, j)).innerHTML = ''
+        }
+    }
+    boardFreq = new Map()
+    moves = []
+    lastMove = ['', '']
+    from = ''
+    gameFinished = false
+    possibleMoves = new Map()
+    var white = document.getElementsByClassName('white')
+    var black = document.getElementsByClassName('black')
+    for(var i = 0; i < white.length; i++) {
+        white[i].removeEventListener('click', movePiece)
+        black[i].removeEventListener('click', movePiece)
+    }
+    for(var i = 0; i < white.length; i++) {
+        white[i].addEventListener('click', edit)
+        black[i].addEventListener('click', edit)
+    }
+}
+
+function pieceEdit(event) {
+    removeGreen()
+    document.getElementById('text').classList.toggle('show', true)
+    event.target.classList.add('highlight')
+    from = event.target.id
+}
+
+function edit(event) {
+    if(from !== '' && document.getElementById(from).classList.contains('editor')) {
+        document.getElementById(event.target.id).innerHTML = document.getElementById(from).innerHTML
+    } else if(from !== '' && document.getElementById(from).id == 'remove') {
+        document.getElementById(event.target.id).innerHTML = ''
+    }
+}
+
+
+function boardEditor(event) {
+    document.getElementById('text').classList.toggle('show', true)
+    if(lastMove[0] !== '') {
+        document.getElementById(lastMove[0]).classList.remove('yellow')
+        document.getElementById(lastMove[1]).classList.remove('yellow')
+    }
+    removeGreen()
+    if(event.target.textContent == 'Board Editor') {
+        event.target.textContent = 'Start Game'
+        notReady()
+    } else {
+        for(var i = 0; i < 8; i++) {
+            for(var j = 0; j < 8; j++) {
+                chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent)
+            }
+        }
+        var king = findKings()
+        whiteKing = king[0]
+        blackKing = king[1]
+        turn = document.getElementById('turn').value;
+        if(!isValidBoard()){
+            endGame('Invalid Board. Try Again.')
+            notReady()
+            return
+        }
+        event.target.textContent = 'Board Editor'
+        whiteCastleStatus = [document.getElementById('W O-O-O').checked, document.getElementById('W O-O').checked]
+        blackCastleStatus = [document.getElementById('B O-O-O').checked, document.getElementById('B O-O').checked]
+        ready()
+    }
+    document.getElementById('undo').classList.toggle('show')
+    document.getElementById('edit-buttons').classList.toggle('show')
+    document.getElementById('info').classList.toggle('show')
+
 }
 
 function movePiece(event){
@@ -66,7 +169,7 @@ function movePiece(event){
         var coordinates = event.target.id
         removeGreen()
         if(from == '') {
-            if(possibleMoves.has(coordinates) && possibleMoves.get(coordinates) !== '') {
+            if(possibleMoves.has(coordinates) && possibleMoves.get(coordinates).size !== 0) {
                 from = coordinates
                 addGreen()
             }
@@ -165,12 +268,15 @@ function addGreen() {
         greenBorder.push(to)
         document.getElementById(to).classList.add('green-border')
     }
+    document.getElementById(from).classList.add('highlight')
 }
 function removeGreen() {
     for (var to of greenBorder) {
         document.getElementById(to).classList.remove('green-border')
     }
-    green = []
+    for(var h of document.getElementsByClassName('highlight')){
+        h.classList.remove('highlight')
+    }
     greenBorder = []
 }
 
@@ -236,7 +342,7 @@ function checkCastle(i, j, coordinates) {
     chessGrid[i][j] = ''
     if(turn == 'b') {
         if(blackCastleStatus[0]) {
-            if(getPiece('d8') == '' && getPiece('c8') == '' && getPiece('b8') == '') {
+            if(coordinates == 'e8' && getPiece('a8') == 'br' && getPiece('d8') == '' && getPiece('c8') == '' && getPiece('b8') == '') {
                 var valid = true
                 for(var x = 1; x <= 2; x++) {
                     chessGrid[i][j - x] = 'bk'
@@ -249,7 +355,7 @@ function checkCastle(i, j, coordinates) {
             }
         }
         if(blackCastleStatus[1]) {
-            if(getPiece('f8') == '' && getPiece('g8') == '') {
+            if(coordinates == 'e8' && getPiece('h8') == 'br' && getPiece('f8') == '' && getPiece('g8') == '') {
                 var valid = true
                 for(var x = 1; x <= 2; x++) {
                     chessGrid[i][j + x] = 'bk'
@@ -264,7 +370,7 @@ function checkCastle(i, j, coordinates) {
         chessGrid[i][j] = 'bk'
     } else {
         if(whiteCastleStatus[0]) {
-            if(getPiece('d1') == '' && getPiece('c1') == '' && getPiece('b1') == '') {
+            if(coordinates == 'e1' && getPiece('a1') == 'wr' && getPiece('d1') == '' && getPiece('c1') == '' && getPiece('b1') == '') {
                 var valid = true
                 for(var x = 1; x <= 2; x++) {
                     chessGrid[i][j - x] = 'wk'
@@ -277,7 +383,7 @@ function checkCastle(i, j, coordinates) {
             }
         }
         if(whiteCastleStatus[1]) {
-            if(getPiece('f1') == '' && getPiece('g1') == '') {
+            if(coordinates == 'e1' && getPiece('h1') == 'wr' && getPiece('f1') == '' && getPiece('g1') == '') {
                 var valid = true
                 for(var x = 1; x <= 2; x++) {
                     chessGrid[i][j + x] = 'wk'
@@ -351,7 +457,8 @@ function checkCheckmate() {
         }
     }
     if(noMoves) {
-        if(kingInCheck(whiteKing[0], whiteKing[1]) || kingInCheck(blackKing[0], blackKing[1])) {
+        if((turn == 'w' && kingInCheck(whiteKing[0], whiteKing[1])) || (turn == 'b' && kingInCheck(blackKing[0], blackKing[1]))) {
+            console.log(kingInCheck(whiteKing[0], whiteKing[1]),  kingInCheck(blackKing[0], blackKing[1]))
             winner = turn == 'w' ? 'Black' : 'White'
             endGame("Checkmate! " + winner + " wins!")
         } else {
@@ -695,6 +802,52 @@ function kingInCheck(i, j) {
 
 function inBounds(i, j) {
     return i >= 0 && j >= 0 && i < chessGrid.length && j < chessGrid.length
+}
+
+function findKings() {
+    arr = [[-100, 100], [-100, -100]]
+    for(var i = 0; i < 8; i++) {
+        for(var j = 0; j < 8; j++) {
+            if(chessGrid[i][j] == 'wk') {
+                arr[0] = [i, j]
+            } else if(chessGrid[i][j] == 'bk') {
+                arr[1] = [i, j]
+            }
+        }
+    }
+    return arr
+}
+
+function isValidBoard() {
+    var whiteKings = 0
+    var blackKings = 0
+    for(var i = 0; i < 8; i++) {
+        for(var j = 0; j < 8; j++) {
+            if(chessGrid[i][j] == 'wk') {
+                whiteKings++
+            } else if(chessGrid[i][j] == 'bk') {
+                blackKings++
+            }
+        }
+    }
+    if(whiteKings != 1 || blackKings != 1) {
+        return false
+    }
+    for(var i = 0; i < 8; i++) {
+        if(chessGrid[0][i] !== '' && chessGrid[0][i].charAt(1) == 'p') {
+            return false
+        } 
+        if(chessGrid[7][i] !== '' && chessGrid[7][i].charAt(1) == 'p') {
+            return false
+        } 
+    }
+    if(turn == 'b' && kingInCheck(blackKing[0], blackKing[1])) {
+        return false
+    }
+    if(turn == 'w' && kingInCheck(whiteKing[0], whiteKing[1])) {
+        return false
+    }
+    return true
 }
 
 function endGame(text) {

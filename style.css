@@ -3,8 +3,12 @@ body {
 }
 
 main {
+    position: relative;
     display: flex;
     justify-content: center;
+    overflow: hidden;
+    bottom: 10px;
+    height: 2000%;
 }
 
 section {
@@ -22,7 +26,11 @@ section {
 }
 
 button:hover {
-    filter: brightness(95%);
+    background-color: lightcyan;
+}
+
+select:hover {
+    background-color: lightcyan;
 }
 
 .coordinates {
@@ -76,11 +84,12 @@ button:hover {
 #text {
     position: relative;
     text-align: center;
-    top: 20px;
+    top: 10px;
     font-size: 30px;
+    line-height: 2;
 }
 
-#undo {
+.non-board-button {
     width: 100px;
     height: 50px;
     position: relative;
@@ -88,4 +97,34 @@ button:hover {
     left: 50px;
     font-size: 20px;
     border-radius: 10%;
+}
+
+#board-editor {
+    left: 225px;
+}
+
+.highlight {
+    outline: 6px solid black;
+    outline-offset: -8px;
+}
+
+.editor {
+    position: relative;
+    top: 92.5px;
+}
+
+#remove {
+    top: 125px;
+    background-color: lightcoral
+}
+
+#turn {
+    font-size: 20px;
+}
+
+#info {
+    position: relative;
+    font-size: 22.5px;
+    top: 300px;
+    right: 50px;
 }
