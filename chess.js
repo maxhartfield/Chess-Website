@@ -50,18 +50,18 @@ charMap.set('♝', 'bb')
 charMap.set('♞', 'bn')
 charMap.set('♟', 'bp')
 charMap.set('', '')
-charMap.set('&#9812', 'wk')
-charMap.set('&#9813', 'wq')
-charMap.set('&#9814', 'wr')
-charMap.set('&#9815', 'wb')
-charMap.set('&#9816', 'wn')
-charMap.set('&#9817', 'wp')
-charMap.set('&#9818', 'bk')
-charMap.set('&#9819', 'bq')
-charMap.set('&#9820', 'br')
-charMap.set('&#9821', 'bb')
-charMap.set('&#9822', 'bn')
-charMap.set('&#9823', 'bp')
+charMap.set('9812', 'wk')
+charMap.set('9813', 'wq')
+charMap.set('&814', 'wr')
+charMap.set('9815', 'wb')
+charMap.set('9816', 'wn')
+charMap.set('9817', 'wp')
+charMap.set('9818', 'bk')
+charMap.set('9819', 'bq')
+charMap.set('9820', 'br')
+charMap.set('9821', 'bb')
+charMap.set('9822', 'bn')
+charMap.set('9823', 'bp')
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -153,8 +153,12 @@ function boardEditor(event) {
     } else {
         for(var i = 0; i < 8; i++) {
             for(var j = 0; j < 8; j++) {
-                chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent)
-                console.log(document.getElementById(getCoordinates(i, j)).textContent)
+                if(document.getElementById(getCoordinates(i, j)).textContent == '') {
+                    chessGrid[i][j] = ''
+                } else {
+                    chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent.charCodeAt().toString())
+                    console.log(charMap.get(document.getElementById(getCoordinates(i, j)).textContent.charCodeAt().toString()))
+                }
             }
         }
         var king = findKings()
