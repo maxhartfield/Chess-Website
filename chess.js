@@ -157,7 +157,6 @@ function boardEditor(event) {
                     chessGrid[i][j] = ''
                 } else {
                     chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent.charCodeAt().toString())
-                    console.log(charMap.get(document.getElementById(getCoordinates(i, j)).textContent.charCodeAt().toString()))
                 }
             }
         }
