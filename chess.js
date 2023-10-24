@@ -153,8 +153,8 @@ function boardEditor(event) {
     } else {
         for(var i = 0; i < 8; i++) {
             for(var j = 0; j < 8; j++) {
-                chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).innerHTML)
-                console.log(charMap.get(document.getElementById(getCoordinates(i, j)).innerHTML))
+                chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent)
+                console.log(charMap.get(document.getElementById(getCoordinates(i, j)).textContent))
             }
         }
         var king = findKings()
