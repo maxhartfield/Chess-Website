@@ -142,6 +142,7 @@ function boardEditor(event) {
         for(var i = 0; i < 8; i++) {
             for(var j = 0; j < 8; j++) {
                 chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).innerHTML)
+                console.log(chessGrid[i][j])
             }
         }
         var king = findKings()
@@ -823,6 +824,7 @@ function isValidBoard() {
     var blackKings = 0
     for(var i = 0; i < 8; i++) {
         for(var j = 0; j < 8; j++) {
+            console.log("*" + chessGrid[i][j])
             if(chessGrid[i][j] == 'wk') {
                 whiteKings++
             } else if(chessGrid[i][j] == 'bk') {
