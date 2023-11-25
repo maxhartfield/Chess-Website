@@ -128,3 +128,7 @@ select:hover {
     top: 300px;
     right: 50px;
 }
+
+.red {
+    background-color: lightcoral;
+}
