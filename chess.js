@@ -287,6 +287,9 @@ function addGreen() {
     document.getElementById(from).classList.add('highlight')
 }
 function removeGreen() {
+    for(var red of document.getElementsByClassName('red')) {
+        red.classList.remove('red')
+    }
     for (var to of greenBorder) {
         document.getElementById(to).classList.remove('green-border')
     }
@@ -460,9 +463,6 @@ function newTurn() {
         boardFreq.set(chessGrid.toString(), 0)
     }
     boardFreq.set(chessGrid.toString(), boardFreq.get(chessGrid.toString()) + 1)
-    for(var red of document.getElementsByClassName('red')) {
-        red.classList.remove('red')
-    }
     if(turn == 'b' && kingInCheck(blackKing[0], blackKing[1])) {
         document.getElementById(getCoordinates(blackKing[0], blackKing[1])).classList.add('red')
     } else if(turn == 'w' && kingInCheck(whiteKing[0], whiteKing[1])) {
