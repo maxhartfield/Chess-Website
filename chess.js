@@ -460,6 +460,14 @@ function newTurn() {
         boardFreq.set(chessGrid.toString(), 0)
     }
     boardFreq.set(chessGrid.toString(), boardFreq.get(chessGrid.toString()) + 1)
+    for(var red of document.getElementsByClassName('red')) {
+        red.classList.remove('red')
+    }
+    if(turn == 'b' && kingInCheck(blackKing[0], blackKing[1])) {
+        document.getElementById(getCoordinates(blackKing[0], blackKing[1])).classList.add('red')
+    } else if(turn == 'w' && kingInCheck(whiteKing[0], whiteKing[1])) {
+        document.getElementById(getCoordinates(whiteKing[0], whiteKing[1])).classList.add('red')
+    }
     checkCheckmate()
     checkInsufficientMaterial()
     checkThreeFold()
