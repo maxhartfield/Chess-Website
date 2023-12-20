@@ -11,6 +11,10 @@ main {
     height: 2000%;
 }
 
+button {
+    color: black;
+}
+
 section {
     margin-top: 50px;
 }
