@@ -25,43 +25,31 @@ var gameFinished = false
 var boardFreq = new Map()
 var moves = []
 var charMap = new Map()
-charMap.set('wk', '&#9812')
-charMap.set('wq', '&#9813')
-charMap.set('wr', '&#9814')
-charMap.set('wb', '&#9815')
-charMap.set('wn', '&#9816')
-charMap.set('wp', '&#9817')
-charMap.set('bk', '&#9818')
-charMap.set('bq', '&#9819')
-charMap.set('br', '&#9820')
-charMap.set('bb', '&#9821')
-charMap.set('bn', '&#9822')
-charMap.set('bp', '&#9823')
-charMap.set('♔', 'wk')
-charMap.set('♕', 'wq')
-charMap.set('♖', 'wr')
-charMap.set('♗', 'wb')
-charMap.set('♘', 'wn')
-charMap.set('♙', 'wp')
-charMap.set('♚', 'bk')
-charMap.set('♛', 'bq')
-charMap.set('♜', 'br')
-charMap.set('♝', 'bb')
-charMap.set('♞', 'bn')
-charMap.set('♟', 'bp')
+charMap.set('wk', 'k')
+charMap.set('wq', 'q')
+charMap.set('wr', 'r')
+charMap.set('wb', 'b')
+charMap.set('wn', 'n')
+charMap.set('wp', 'p')
+charMap.set('bk', 'l')
+charMap.set('bq', 'w')
+charMap.set('br', 't')
+charMap.set('bb', 'v')
+charMap.set('bn', 'm')
+charMap.set('bp', 'o')
 charMap.set('', '')
-charMap.set('9812', 'wk')
-charMap.set('9813', 'wq')
-charMap.set('&814', 'wr')
-charMap.set('9815', 'wb')
-charMap.set('9816', 'wn')
-charMap.set('9817', 'wp')
-charMap.set('9818', 'bk')
-charMap.set('9819', 'bq')
-charMap.set('9820', 'br')
-charMap.set('9821', 'bb')
-charMap.set('9822', 'bn')
-charMap.set('9823', 'bp')
+charMap.set('k', 'wk')
+charMap.set('q', 'wq')
+charMap.set('r', 'wr')
+charMap.set('b', 'wb')
+charMap.set('n', 'wn')
+charMap.set('p', 'wp')
+charMap.set('l', 'bk')
+charMap.set('w', 'bq')
+charMap.set('t', 'br')
+charMap.set('v', 'bb')
+charMap.set('m', 'bn')
+charMap.set('o', 'bp')
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -156,7 +144,7 @@ function boardEditor(event) {
                 if(document.getElementById(getCoordinates(i, j)).textContent == '') {
                     chessGrid[i][j] = ''
                 } else {
-                    chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent.charCodeAt().toString())
+                    chessGrid[i][j] = charMap.get(document.getElementById(getCoordinates(i, j)).textContent)
                 }
             }
         }
@@ -482,7 +470,6 @@ function checkCheckmate() {
     }
     if(noMoves) {
         if((turn == 'w' && kingInCheck(whiteKing[0], whiteKing[1])) || (turn == 'b' && kingInCheck(blackKing[0], blackKing[1]))) {
-            console.log(kingInCheck(whiteKing[0], whiteKing[1]),  kingInCheck(blackKing[0], blackKing[1]))
             winner = turn == 'w' ? 'Black' : 'White'
             endGame("Checkmate! " + winner + " wins!")
         } else {
@@ -847,7 +834,6 @@ function isValidBoard() {
     var blackKings = 0
     for(var i = 0; i < 8; i++) {
         for(var j = 0; j < 8; j++) {
-            console.log("*" + chessGrid[i][j])
             if(chessGrid[i][j] == 'wk') {
                 whiteKings++
             } else if(chessGrid[i][j] == 'bk') {
