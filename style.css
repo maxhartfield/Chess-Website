@@ -44,15 +44,18 @@ section {
 }
 
 .board-button {
-    font-size: 3vmin;
+    font-size: 5vmin;
     font-family: myFont;
 }
 
 .cell {
     display: table-cell;
+    margin-left: auto;
+    margin-right: auto;
     width: 7vmin;
     height: 7vmin;
     text-align: center;
+    justify-content: center;
     vertical-align: middle;
 }
 
