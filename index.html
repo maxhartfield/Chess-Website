@@ -7,143 +7,146 @@
     </head>
     <body>
         <main>
-            <button id = 'board-editor' class = 'non-board-button'>Board Editor</button>
             <section id = 'edit-buttons' class = 'show'>
                 <div class = 'container edit'>
-                    <button id = 'wk' class = 'board-button editor'>k</button>
-                    <button id = 'bk' class = 'board-button editor'>l</button>
+                    <button id = 'wk' class = 'board-button cell editor'>k</button>
+                    <button id = 'bk' class = 'board-button cell editor'>l</button>
                 </div>
                 <div class = 'container edit'>
-                    <button id = 'wq' class = 'board-button editor'>q</button>
-                    <button id = 'bq' class = 'board-button editor'>w</button>
+                    <button id = 'wq' class = 'board-button cell editor'>q</button>
+                    <button id = 'bq' class = 'board-button cell editor'>w</button>
                 </div>
                 <div class = 'container edit'>
-                    <button id = 'wr' class = 'board-button editor'>r</button>
-                    <button id = 'br' class = 'board-button editor'>t</button>
+                    <button id = 'wr' class = 'board-button cell editor'>r</button>
+                    <button id = 'br' class = 'board-button cell editor'>t</button>
                 </div>
                 <div class = 'container edit'>
-                    <button id = 'wb' class = 'board-button editor'>b</button>
-                    <button id = 'bb' class = 'board-button editor'>v</button>
+                    <button id = 'wb' class = 'board-button cell editor'>b</button>
+                    <button id = 'bb' class = 'board-button cell editor'>v</button>
                 </div>
                 <div class = 'container edit'>
-                    <button id = 'wn' class = 'board-button editor'>n</button>
-                    <button id = 'bn' class = 'board-button editor'>m</button>
+                    <button id = 'wn' class = 'board-button cell editor'>n</button>
+                    <button id = 'bn' class = 'board-button cell editor'>m</button>
                 </div>
                 <div class = 'container edit'>
-                    <button id = 'wp' class = 'board-button editor'>p</button>
-                    <button id = 'bp' class = 'board-button editor'>o</button>
+                    <button id = 'wp' class = 'board-button cell editor'>p</button>
+                    <button id = 'bp' class = 'board-button cell editor'>o</button>
                 </div>
-                <div><button id = 'remove' class = 'non-board-button'>Remove</button></div>
+                <div><button id = 'remove' class = 'non-board-button cell'>Remove</button></div>
             </section>
-            <section id = 'promotionSection' class = 'show'>
-                <div><button name = 'q' class = 'promotion board-button'></button></div>
-                <div><button name = 'n' class = 'promotion board-button'></button></div>
-                <div><button name = 'r' class = 'promotion board-button'></button></div>
-                <div><button name = 'b' class = 'promotion board-button'></button></div>
-            </section>
+            
             <section>
-                <div class = 'container board'>
-                    <button id='a8' class='white board-button'>t</button>
-                    <button id='b8' class='black board-button'>m</button>
-                    <button id='c8' class='white board-button'>v</button>
-                    <button id='d8' class='black board-button'>w</button>
-                    <button id='e8' class='white board-button'>l</button>
-                    <button id='f8' class='black board-button'>v</button>
-                    <button id='g8' class='white board-button'>m</button>
-                    <button id='h8' class='black board-button'>t</button>
-                    <span class='coordinates'>8</span>
+                <div class = 'container letters'>
+                    <button id = 'board-editor' class = 'non-board-button cell'>Board<br>Editor</button>
+                    <span class='cell'></span>
+                    <button name = 'q' class = 'promotion promotionSection show board-button cell'></button>
+                    <button name = 'n' class = 'promotion promotionSection show board-button cell'></button>
+                    <button name = 'r' class = 'promotion promotionSection show board-button cell'></button>
+                    <button name = 'b' class = 'promotion promotionSection show board-button cell'></button>
+                    <span class='cell'></span>
+                    <button id = 'undo' class = 'non-board-button cell'>Undo</button>
                 </div>
                 <div class = 'container board'>
-                    <button id='a7' class='black board-button'>o</button>
-                    <button id='b7' class='white board-button'>o</button>
-                    <button id='c7' class='black board-button'>o</button>
-                    <button id='d7' class='white board-button'>o</button>
-                    <button id='e7' class='black board-button'>o</button>
-                    <button id='f7' class='white board-button'>o</button>
-                    <button id='g7' class='black board-button'>o</button>
-                    <button id='h7' class='white board-button'>o</button>
-                    <span class='coordinates'>7</span>
+                    <button id='a8' class='white board-button cell'>t</button>
+                    <button id='b8' class='black board-button cell'>m</button>
+                    <button id='c8' class='white board-button cell'>v</button>
+                    <button id='d8' class='black board-button cell'>w</button>
+                    <button id='e8' class='white board-button cell'>l</button>
+                    <button id='f8' class='black board-button cell'>v</button>
+                    <button id='g8' class='white board-button cell'>m</button>
+                    <button id='h8' class='black board-button cell'>t</button>
+                    <span class='cell coordinates'>8</span>
                 </div>
                 <div class = 'container board'>
-                    <button id='a6' class='white board-button'></button>
-                    <button id='b6' class='black board-button'></button>
-                    <button id='c6' class='white board-button'></button>
-                    <button id='d6' class='black board-button'></button>
-                    <button id='e6' class='white board-button'></button>
-                    <button id='f6' class='black board-button'></button>
-                    <button id='g6' class='white board-button'></button>
-                    <button id='h6' class='black board-button'></button>
-                    <span class='coordinates'>6</span>
+                    <button id='a7' class='black board-button cell'>o</button>
+                    <button id='b7' class='white board-button cell'>o</button>
+                    <button id='c7' class='black board-button cell'>o</button>
+                    <button id='d7' class='white board-button cell'>o</button>
+                    <button id='e7' class='black board-button cell'>o</button>
+                    <button id='f7' class='white board-button cell'>o</button>
+                    <button id='g7' class='black board-button cell'>o</button>
+                    <button id='h7' class='white board-button cell'>o</button>
+                    <span class='cell coordinates'>7</span>
                 </div>
                 <div class = 'container board'>
-                    <button id='a5' class='black board-button'></button>
-                    <button id='b5' class='white board-button'></button>
-                    <button id='c5' class='black board-button'></button>
-                    <button id='d5' class='white board-button'></button>
-                    <button id='e5' class='black board-button'></button>
-                    <button id='f5' class='white board-button'></button>
-                    <button id='g5' class='black board-button'></button>
-                    <button id='h5' class='white board-button'></button>
-                    <span class='coordinates'>5</span>
+                    <button id='a6' class='white board-button cell'></button>
+                    <button id='b6' class='black board-button cell'></button>
+                    <button id='c6' class='white board-button cell'></button>
+                    <button id='d6' class='black board-button cell'></button>
+                    <button id='e6' class='white board-button cell'></button>
+                    <button id='f6' class='black board-button cell'></button>
+                    <button id='g6' class='white board-button cell'></button>
+                    <button id='h6' class='black board-button cell'></button>
+                    <span class='cell coordinates'>6</span>
                 </div>
                 <div class = 'container board'>
-                    <button id='a4' class='white board-button'></button>
-                    <button id='b4' class='black board-button'></button>
-                    <button id='c4' class='white board-button'></button>
-                    <button id='d4' class='black board-button'></button>
-                    <button id='e4' class='white board-button'></button>
-                    <button id='f4' class='black board-button'></button>
-                    <button id='g4' class='white board-button'></button>
-                    <button id='h4' class='black board-button'></button>
-                    <span class='coordinates'>4</span>
+                    <button id='a5' class='black board-button cell'></button>
+                    <button id='b5' class='white board-button cell'></button>
+                    <button id='c5' class='black board-button cell'></button>
+                    <button id='d5' class='white board-button cell'></button>
+                    <button id='e5' class='black board-button cell'></button>
+                    <button id='f5' class='white board-button cell'></button>
+                    <button id='g5' class='black board-button cell'></button>
+                    <button id='h5' class='white board-button cell'></button>
+                    <span class='cell coordinates'>5</span>
                 </div>
                 <div class = 'container board'>
-                    <button id='a3' class='black board-button'></button>
-                    <button id='b3' class='white board-button'></button>
-                    <button id='c3' class='black board-button'></button>
-                    <button id='d3' class='white board-button'></button>
-                    <button id='e3' class='black board-button'></button>
-                    <button id='f3' class='white board-button'></button>
-                    <button id='g3' class='black board-button'></button>
-                    <button id='h3' class='white board-button'></button>
-                    <span class='coordinates'>3</span>
+                    <button id='a4' class='white board-button cell'></button>
+                    <button id='b4' class='black board-button cell'></button>
+                    <button id='c4' class='white board-button cell'></button>
+                    <button id='d4' class='black board-button cell'></button>
+                    <button id='e4' class='white board-button cell'></button>
+                    <button id='f4' class='black board-button cell'></button>
+                    <button id='g4' class='white board-button cell'></button>
+                    <button id='h4' class='black board-button cell'></button>
+                    <span class='cell coordinates'>4</span>
                 </div>
                 <div class = 'container board'>
-                    <button id='a2' class='white board-button'>p</button>
-                    <button id='b2' class='black board-button'>p</button>
-                    <button id='c2' class='white board-button'>p</button>
-                    <button id='d2' class='black board-button'>p</button>
-                    <button id='e2' class='white board-button'>p</button>
-                    <button id='f2' class='black board-button'>p</button>
-                    <button id='g2' class='white board-button'>p</button>
-                    <button id='h2' class='black board-button'>p</button>
-                    <span class='coordinates'>2</span>
+                    <button id='a3' class='black board-button cell'></button>
+                    <button id='b3' class='white board-button cell'></button>
+                    <button id='c3' class='black board-button cell'></button>
+                    <button id='d3' class='white board-button cell'></button>
+                    <button id='e3' class='black board-button cell'></button>
+                    <button id='f3' class='white board-button cell'></button>
+                    <button id='g3' class='black board-button cell'></button>
+                    <button id='h3' class='white board-button cell'></button>
+                    <span class='cell coordinates'>3</span>
                 </div>
                 <div class = 'container board'>
-                    <button id='a1' class='black board-button'>r</button>
-                    <button id='b1' class='white board-button'>n</button>
-                    <button id='c1' class='black board-button'>b</button>
-                    <button id='d1' class='white board-button'>q</button>
-                    <button id='e1' class='black board-button'>k</button>
-                    <button id='f1' class='white board-button'>b</button>
-                    <button id='g1' class='black board-button'>n</button>
-                    <button id='h1' class='white board-button'>r</button>
-                    <span class='coordinates'>1</span>
+                    <button id='a2' class='white board-button cell'>p</button>
+                    <button id='b2' class='black board-button cell'>p</button>
+                    <button id='c2' class='white board-button cell'>p</button>
+                    <button id='d2' class='black board-button cell'>p</button>
+                    <button id='e2' class='white board-button cell'>p</button>
+                    <button id='f2' class='black board-button cell'>p</button>
+                    <button id='g2' class='white board-button cell'>p</button>
+                    <button id='h2' class='black board-button cell'>p</button>
+                    <span class='cell coordinates'>2</span>
+                </div>
+                <div class = 'container board'>
+                    <button id='a1' class='black board-button cell'>r</button>
+                    <button id='b1' class='white board-button cell'>n</button>
+                    <button id='c1' class='black board-button cell'>b</button>
+                    <button id='d1' class='white board-button cell'>q</button>
+                    <button id='e1' class='black board-button cell'>k</button>
+                    <button id='f1' class='white board-button cell'>b</button>
+                    <button id='g1' class='black board-button cell'>n</button>
+                    <button id='h1' class='white board-button cell'>r</button>
+                    <span class='cell coordinates'>1</span>
                 </div>
                 <div class = 'container letters'>
-                   <span class='coordinates'>a</span>
-                   <span class='coordinates'>b</span>
-                   <span class='coordinates'>c</span>
-                   <span class='coordinates'>d</span>
-                   <span class='coordinates'>e</span>
-                   <span class='coordinates'>f</span>
-                   <span class='coordinates'>g</span>
-                   <span class='coordinates'>h</span>
+                   <span class='cell coordinates'>a</span>
+                   <span class='cell coordinates'>b</span>
+                   <span class='cell coordinates'>c</span>
+                   <span class='cell coordinates'>d</span>
+                   <span class='cell coordinates'>e</span>
+                   <span class='cell coordinates'>f</span>
+                   <span class='cell coordinates'>g</span>
+                   <span class='cell coordinates'>h</span>
                 </div>
                 <div id = 'text' class = 'show'>Three Fold Repetition! White and Black draw!<div>
                 </div>
             </section>
-            <button id = 'undo' class = 'non-board-button'>Undo</button>
             <div id = 'info' class = 'show'>
                 <select id = "turn">
                     <option value = "b">White to play</option>

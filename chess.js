@@ -135,8 +135,8 @@ function boardEditor(event) {
         document.getElementById(lastMove[1]).classList.remove('yellow')
     }
     removeGreen()
-    if(event.target.textContent == 'Board Editor') {
-        event.target.textContent = 'Start Game'
+    if(event.target.innerHTML == 'Board<br>Editor') {
+        event.target.innerHTML = 'Start<br>Game'
         notReady()
     } else {
         for(var i = 0; i < 8; i++) {
@@ -157,7 +157,7 @@ function boardEditor(event) {
             notReady()
             return
         }
-        event.target.textContent = 'Board Editor'
+        event.target.innerHTML = 'Board<br>Editor'
         whiteCastleStatus = [document.getElementById('W O-O-O').checked, document.getElementById('W O-O').checked]
         blackCastleStatus = [document.getElementById('B O-O-O').checked, document.getElementById('B O-O').checked]
         ready()
@@ -222,7 +222,10 @@ function addPosition() {
 }
 
 function hide(event) {
-    document.getElementById('promotionSection').classList.toggle('show')
+    var promotion = document.getElementsByClassName('promotionSection')
+    for(var i = 0; i < promotion.length; i++) {
+        promotion[i].classList.toggle('show')
+    }
     setPiece(lastMove[1], getPiece(lastMove[1]).charAt(0) + event.target.name)
     document.getElementById(lastMove[1]).textContent = event.target.textContent
     turn = turn == 'w' ? 'b' : 'w'
@@ -262,7 +265,10 @@ function undo(event) {
             document.getElementById('text').classList.toggle('show')
             gameFinished = false
         }
-        document.getElementById('promotionSection').classList.toggle('show', true)
+        var promotion = document.getElementsByClassName('promotionSection')
+        for(var i = 0; i < promotion.length; i++) {
+            promotion[i].classList.toggle('show', true)
+        }
         removeGreen()
     }
 }
@@ -545,7 +551,10 @@ function checkPromotion(coordinates) {
         for (var i = 0; i < promotionButtons.length; i++) {
             promotionButtons[i].innerHTML = pieces[i]
         }
-        document.getElementById('promotionSection').classList.toggle('show')
+        var promotion = document.getElementsByClassName('promotionSection')
+        for(var i = 0; i < promotion.length; i++) {
+            promotion[i].classList.toggle('show')
+        }
         possibleMoves.clear()
         turn = turn == 'w' ? 'b' : 'w'
     }

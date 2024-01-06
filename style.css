@@ -29,34 +29,31 @@ section {
     display: table;
     justify-content: center;
     white-space: nowrap;
-  }
+}
 
 .board {
-    width: 64vmin;
+    width: 81vmin;
 }
 
 .letters {
-    width: 56vmin;
+    width: 72vmin;
 }
 
 .edit {
-    width: 14vmin;
-}
-
-.container-letters {
-    display: table;
-    justify-content: center;
-    white-space: nowrap;
+    width: 18vmin;
 }
 
 .board-button {
+    font-size: 6vmin;
+    font-family: myFont;
+}
+
+.cell {
     display: table-cell;
-    font-size: 4vmin;
-    width: 7vmin;
-    height: 7vmin;
+    width: 9vmin;
+    height: 9vmin;
     text-align: center;
     vertical-align: middle;
-    font-family: myFont;
 }
 
 button:hover {
@@ -68,12 +65,7 @@ select:hover {
 }
 
 .coordinates {
-    display: table-cell;
     font-size: 2vmin;
-    width: 7vmin;
-    height: 7vmin;
-    text-align: center;
-    vertical-align: middle;
     font-weight: bold;
 }
 
@@ -99,9 +91,7 @@ select:hover {
 }
 
 .promotion {
-    position: relative;
-    right: 20px;
-    top: 185px;
+   
 }
 
 .show {
@@ -117,18 +107,13 @@ select:hover {
 }
 
 .non-board-button {
-    width: 100px;
-    height: 50px;
-    position: relative;
-    top: 50px;
-    left: 50px;
-    font-size: 20px;
+    width: 9vmin;
+    height: 4vmin;
+    font-size: 1.5vmin;
     border-radius: 10%;
+    font-weight: bold;
 }
 
-#board-editor {
-    left: 150px;
-}
 
 .highlight {
     outline: 4px solid black;
@@ -153,7 +138,6 @@ select:hover {
     position: relative;
     font-size: 22.5px;
     top: 300px;
-    right: 50px;
 }
 
 .red {
