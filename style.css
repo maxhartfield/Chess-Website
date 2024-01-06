@@ -22,16 +22,40 @@ button {
 
 section {
     margin-top: 50px;
+    justify-content: center;
+}
+
+.container {
+    display: table;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+.board {
+    width: 90vmin;
+}
+
+.letters {
+    width: 80vmin;
+}
+
+.edit {
+    width: 20vmin;
+}
+
+.container-letters {
+    display: table;
+    justify-content: center;
+    white-space: nowrap;
 }
 
 .board-button {
-    display: inline-block;
-    font-size: 5em;
-    width: 100px;
-    height: 100px;
-    margin: -3px;
+    display: table-cell;
+    font-size: 7vmin;
+    width: 10vmin;
+    height: 10vmin;
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
     font-family: myFont;
 }
 
@@ -44,20 +68,14 @@ select:hover {
 }
 
 .coordinates {
-    position: relative;
-    font-size: larger;
+    display: table-cell;
+    font-size: 2vmin;
+    width: 10vmin;
+    height: 10vmin;
+    margin: -3px;
+    text-align: center;
+    vertical-align: middle;
     font-weight: bold;
-}
-
-.letters {
-    margin-left: 42.5px;
-    margin-right: 42.5px;
-    top: 10px;
-}
-
-.num {
-    top: 37.5px;
-    left: 10px;
 }
 
 .white {
