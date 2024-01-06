@@ -50,8 +50,6 @@ section {
 
 .cell {
     display: table-cell;
-    margin-left: auto;
-    margin-right: auto;
     width: 7vmin;
     height: 7vmin;
     text-align: center;
