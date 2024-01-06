@@ -51,7 +51,7 @@ section {
 
 .board-button {
     display: table-cell;
-    font-size: 6vmin;
+    font-size: 5vmin;
     width: 8vmin;
     height: 8vmin;
     text-align: center;
