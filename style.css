@@ -32,26 +32,26 @@ section {
 }
 
 .board {
-    width: 81vmin;
+    width: 63vmin;
 }
 
 .letters {
-    width: 72vmin;
+    width: 56vmin;
 }
 
 .edit {
-    width: 18vmin;
+    width: 14vmin;
 }
 
 .board-button {
-    font-size: 6vmin;
+    font-size: 3vmin;
     font-family: myFont;
 }
 
 .cell {
     display: table-cell;
-    width: 9vmin;
-    height: 9vmin;
+    width: 7vmin;
+    height: 7vmin;
     text-align: center;
     vertical-align: middle;
 }
@@ -107,7 +107,7 @@ select:hover {
 }
 
 .non-board-button {
-    width: 9vmin;
+    width: 7vmin;
     height: 4vmin;
     font-size: 1.5vmin;
     border-radius: 10%;
