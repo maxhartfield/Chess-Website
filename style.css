@@ -32,15 +32,15 @@ section {
   }
 
 .board {
-    width: 72vmin;
-}
-
-.letters {
     width: 64vmin;
 }
 
+.letters {
+    width: 56vmin;
+}
+
 .edit {
-    width: 16vmin;
+    width: 14vmin;
 }
 
 .container-letters {
@@ -51,9 +51,9 @@ section {
 
 .board-button {
     display: table-cell;
-    font-size: 5vmin;
-    width: 8vmin;
-    height: 8vmin;
+    font-size: 4vmin;
+    width: 7vmin;
+    height: 7vmin;
     text-align: center;
     vertical-align: middle;
     font-family: myFont;
@@ -70,8 +70,8 @@ select:hover {
 .coordinates {
     display: table-cell;
     font-size: 2vmin;
-    width: 8vmin;
-    height: 8vmin;
+    width: 7vmin;
+    height: 7vmin;
     text-align: center;
     vertical-align: middle;
     font-weight: bold;
@@ -127,7 +127,7 @@ select:hover {
 }
 
 #board-editor {
-    left: 225px;
+    left: 150px;
 }
 
 .highlight {
