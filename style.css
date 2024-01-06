@@ -32,15 +32,15 @@ section {
   }
 
 .board {
-    width: 90vmin;
+    width: 72vmin;
 }
 
 .letters {
-    width: 80vmin;
+    width: 64vmin;
 }
 
 .edit {
-    width: 20vmin;
+    width: 16vmin;
 }
 
 .container-letters {
@@ -51,9 +51,9 @@ section {
 
 .board-button {
     display: table-cell;
-    font-size: 7vmin;
-    width: 10vmin;
-    height: 10vmin;
+    font-size: 4vmin;
+    width: 8vmin;
+    height: 8vmin;
     text-align: center;
     vertical-align: middle;
     font-family: myFont;
@@ -70,9 +70,8 @@ select:hover {
 .coordinates {
     display: table-cell;
     font-size: 2vmin;
-    width: 10vmin;
-    height: 10vmin;
-    margin: -3px;
+    width: 8vmin;
+    height: 8vmin;
     text-align: center;
     vertical-align: middle;
     font-weight: bold;
@@ -91,8 +90,8 @@ select:hover {
 }
 
 .green-border{
-    outline: 6px solid lightgreen;
-    outline-offset: -8px;
+    outline: 4px solid lightgreen;
+    outline-offset: -6px;
 }
 
 .yellow {
@@ -132,8 +131,8 @@ select:hover {
 }
 
 .highlight {
-    outline: 6px solid black;
-    outline-offset: -8px;
+    outline: 4px solid black;
+    outline-offset: -6px;
 }
 
 .editor {
