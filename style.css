@@ -32,15 +32,11 @@ section {
 }
 
 .board {
-    width: 64vmin;
+    width: 77vmin;
 }
 
 .letters {
     width: 56vmin;
-}
-
-.edit {
-    width: 14vmin;
 }
 
 .board-button {
@@ -90,19 +86,13 @@ select:hover {
     background-color: lightyellow;
 }
 
-.promotion {
-   
-}
-
 .show {
     visibility: hidden;
 }
 
 #text {
-    position: relative;
     text-align: center;
-    top: 10px;
-    font-size: 30px;
+    font-size: 3vmin;
     line-height: 2;
 }
 
@@ -120,26 +110,47 @@ select:hover {
     outline-offset: -6px;
 }
 
-.editor {
-    position: relative;
-    top: 92.5px;
+.remove {
+    display: table-cell;
+    width: 14vmin;
+    height: 7vmin;
+    text-align: center;
+    vertical-align: middle;
 }
 
 #remove {
-    top: 125px;
-    background-color: lightcoral
+    background-color: lightcoral;
+    width: 8vmin;
+    height: 4vmin;
+    font-size: 1.5vmin;
+    border-radius: 10%;
+    font-weight: bold;
 }
 
 #turn {
-    font-size: 20px;
+    font-size: 1.5vmin;
 }
 
-#info {
-    position: relative;
-    font-size: 22.5px;
-    top: 300px;
+.turn {
+    display: table-cell;
+    width: 14vmin;
+    height: 7vmin;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.castle {
+    display: table-cell;
+    width: 14vmin;
+    height: 7vmin;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .red {
     background-color: lightcoral;
+}
+
+label {
+    font-size:  1.2vmin;
 }

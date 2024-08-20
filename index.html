@@ -7,36 +7,38 @@
     </head>
     <body>
         <main>
-            <section id = 'edit-buttons' class = 'show'>
-                <div class = 'container edit'>
-                    <button id = 'wk' class = 'board-button cell editor'>k</button>
-                    <button id = 'bk' class = 'board-button cell editor'>l</button>
-                </div>
-                <div class = 'container edit'>
-                    <button id = 'wq' class = 'board-button cell editor'>q</button>
-                    <button id = 'bq' class = 'board-button cell editor'>w</button>
-                </div>
-                <div class = 'container edit'>
-                    <button id = 'wr' class = 'board-button cell editor'>r</button>
-                    <button id = 'br' class = 'board-button cell editor'>t</button>
-                </div>
-                <div class = 'container edit'>
-                    <button id = 'wb' class = 'board-button cell editor'>b</button>
-                    <button id = 'bb' class = 'board-button cell editor'>v</button>
-                </div>
-                <div class = 'container edit'>
-                    <button id = 'wn' class = 'board-button cell editor'>n</button>
-                    <button id = 'bn' class = 'board-button cell editor'>m</button>
-                </div>
-                <div class = 'container edit'>
-                    <button id = 'wp' class = 'board-button cell editor'>p</button>
-                    <button id = 'bp' class = 'board-button cell editor'>o</button>
-                </div>
-                <div><button id = 'remove' class = 'non-board-button cell'>Remove</button></div>
-            </section>
-            
             <section>
-                <div class = 'container letters'>
+                <div class = 'container board'>
+                    <!-- <div id = 'info' class = 'show'>
+                        <select id = 'turn'>
+                            <option value = 'b'>White to play</option>
+                            <option value = 'w'>Black to play</option>
+                        </select>
+                        <div>
+                            <div>
+                                <label>White O-O-O</label>
+                                <input type = 'checkbox' id = 'W O-O-O'>
+                            </div>
+                            <div>
+                                <label>White O-O</label>
+                                <input type = 'checkbox' id = 'W O-O'>
+                            </div>
+                            <div>
+                                <label>Black O-O-O</label>
+                                <input type = 'checkbox' id = 'B O-O-O'>
+                            </div>
+                            <div>
+                                <label>Black O-O</label>
+                                <input type = 'checkbox' id = 'B O-O'>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class = 'turn'>
+                        <select id = 'turn' class='show'>
+                            <option value = 'b'>White to play</option>
+                            <option value = 'w'>Black to play</option>
+                        </select>
+                    </div>
                     <button id = 'board-editor' class = 'non-board-button cell'>Board<br>Editor</button>
                     <span class='cell'></span>
                     <button name = 'q' class = 'promotion promotionSection show board-button cell'></button>
@@ -45,8 +47,23 @@
                     <button name = 'b' class = 'promotion promotionSection show board-button cell'></button>
                     <span class='cell'></span>
                     <button id = 'undo' class = 'non-board-button cell'>Undo</button>
+                    <span class='cell'></span>
                 </div>
                 <div class = 'container board'>
+                    <div class = 'castle show'>
+                        <div>
+                            <label>W O-O-O</label>
+                            <input type = 'checkbox' id = 'W O-O-O'>
+                            <label>W O-O</label>
+                            <input type = 'checkbox' id = 'W O-O'>
+                        </div>
+                        <div>
+                            <label>B O-O-O</label>
+                            <input type = 'checkbox' id = 'B O-O-O'>
+                            <label>B O-O</label>
+                            <input type = 'checkbox' id = 'B O-O'>
+                        </div>
+                    </div>
                     <button id='a8' class='white board-button cell'>t</button>
                     <button id='b8' class='black board-button cell'>m</button>
                     <button id='c8' class='white board-button cell'>v</button>
@@ -58,6 +75,8 @@
                     <span class='cell coordinates'>8</span>
                 </div>
                 <div class = 'container board'>
+                    <button id = 'wk' class = 'board-button cell editor show'>k</button>
+                    <button id = 'bk' class = 'board-button cell editor show'>l</button>
                     <button id='a7' class='black board-button cell'>o</button>
                     <button id='b7' class='white board-button cell'>o</button>
                     <button id='c7' class='black board-button cell'>o</button>
@@ -69,6 +88,8 @@
                     <span class='cell coordinates'>7</span>
                 </div>
                 <div class = 'container board'>
+                    <button id = 'wq' class = 'board-button cell editor show'>q</button>
+                    <button id = 'bq' class = 'board-button cell editor show'>w</button>
                     <button id='a6' class='white board-button cell'></button>
                     <button id='b6' class='black board-button cell'></button>
                     <button id='c6' class='white board-button cell'></button>
@@ -80,6 +101,8 @@
                     <span class='cell coordinates'>6</span>
                 </div>
                 <div class = 'container board'>
+                    <button id = 'wr' class = 'board-button cell editor show'>r</button>
+                    <button id = 'br' class = 'board-button cell editor show'>t</button>
                     <button id='a5' class='black board-button cell'></button>
                     <button id='b5' class='white board-button cell'></button>
                     <button id='c5' class='black board-button cell'></button>
@@ -91,6 +114,8 @@
                     <span class='cell coordinates'>5</span>
                 </div>
                 <div class = 'container board'>
+                    <button id = 'wb' class = 'board-button cell editor show'>b</button>
+                    <button id = 'bb' class = 'board-button cell editor show'>v</button>
                     <button id='a4' class='white board-button cell'></button>
                     <button id='b4' class='black board-button cell'></button>
                     <button id='c4' class='white board-button cell'></button>
@@ -102,6 +127,8 @@
                     <span class='cell coordinates'>4</span>
                 </div>
                 <div class = 'container board'>
+                    <button id = 'wn' class = 'board-button cell editor show'>n</button>
+                    <button id = 'bn' class = 'board-button cell editor show'>m</button>
                     <button id='a3' class='black board-button cell'></button>
                     <button id='b3' class='white board-button cell'></button>
                     <button id='c3' class='black board-button cell'></button>
@@ -113,6 +140,8 @@
                     <span class='cell coordinates'>3</span>
                 </div>
                 <div class = 'container board'>
+                    <button id = 'wp' class = 'board-button cell editor show'>p</button>
+                    <button id = 'bp' class = 'board-button cell editor show'>o</button>
                     <button id='a2' class='white board-button cell'>p</button>
                     <button id='b2' class='black board-button cell'>p</button>
                     <button id='c2' class='white board-button cell'>p</button>
@@ -124,6 +153,7 @@
                     <span class='cell coordinates'>2</span>
                 </div>
                 <div class = 'container board'>
+                    <div class = 'remove'><button id = 'remove' class = 'editor show'>Remove</button></div>
                     <button id='a1' class='black board-button cell'>r</button>
                     <button id='b1' class='white board-button cell'>n</button>
                     <button id='c1' class='black board-button cell'>b</button>
@@ -134,44 +164,22 @@
                     <button id='h1' class='white board-button cell'>r</button>
                     <span class='cell coordinates'>1</span>
                 </div>
-                <div class = 'container letters'>
-                   <span class='cell coordinates'>a</span>
-                   <span class='cell coordinates'>b</span>
-                   <span class='cell coordinates'>c</span>
-                   <span class='cell coordinates'>d</span>
-                   <span class='cell coordinates'>e</span>
-                   <span class='cell coordinates'>f</span>
-                   <span class='cell coordinates'>g</span>
-                   <span class='cell coordinates'>h</span>
+                <div class = 'container board'>
+                    <span class='cell'></span>
+                    <span class='cell'></span>
+                    <span class='cell coordinates'>a</span>
+                    <span class='cell coordinates'>b</span>
+                    <span class='cell coordinates'>c</span>
+                    <span class='cell coordinates'>d</span>
+                    <span class='cell coordinates'>e</span>
+                    <span class='cell coordinates'>f</span>
+                    <span class='cell coordinates'>g</span>
+                    <span class='cell coordinates'>h</span>
+                    <span class='cell'></span>
                 </div>
                 <div id = 'text' class = 'show'>Three Fold Repetition! White and Black draw!<div>
                 </div>
             </section>
-            <div id = 'info' class = 'show'>
-                <select id = "turn">
-                    <option value = "b">White to play</option>
-                    <option value = "w">Black to play</option>
-                </select>
-                <div>
-                    <div>Castle Status:</div>
-                    <div>
-                        <label>White O-O-O</label>
-                        <input type = "checkbox" id = 'W O-O-O'>
-                    </div>
-                    <div>
-                        <label>White O-O</label>
-                        <input type = "checkbox" id = 'W O-O'>
-                    </div>
-                    <div>
-                        <label>Black O-O-O</label>
-                        <input type = "checkbox" id = 'B O-O-O'>
-                    </div>
-                    <div>
-                        <label>Black O-O</label>
-                        <input type = "checkbox" id = 'B O-O'>
-                    </div>
-                </div>
-            </div>
         </main>
     </body>
 </html>
