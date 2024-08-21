@@ -103,7 +103,7 @@ select:hover {
 .non-board-button {
     width: 7vmin;
     height: 4vmin;
-    font-size: 1.5vmin;
+    font-size: 1.25vmin;
     border-radius: 10%;
     font-weight: bold;
 }
@@ -126,7 +126,7 @@ select:hover {
     background-color: lightcoral;
     width: 8vmin;
     height: 4vmin;
-    font-size: 1.5vmin;
+    font-size: 1.25vmin;
     border-radius: 10%;
     font-weight: bold;
 }
@@ -156,5 +156,11 @@ select:hover {
 }
 
 label {
-    font-size:  1.2vmin;
+    font-size:  1vmin;
+    padding: 0;
+}
+
+.checkbox {
+    width: 1vmin;
+    height: 1vmin;
 }
